@@ -64,7 +64,7 @@ var getUnit = function(unit) {
     unit = LocalStore.get("dapp_puffsUnit");
 
     if (!unit) {
-      unit = "ether";
+      unit = "puffs";
       LocalStore.set("dapp_puffsUnit", unit);
     }
   }
@@ -95,7 +95,7 @@ if (isMeteorPackage) {
     **/
   PuffsTools.setUnit = function(unit) {
     if (supportedCurrencies(unit)) {
-      LocalStore.set("dapp_etherUnit", unit);
+      LocalStore.set("dapp_puffsUnit", unit);
       return true;
     } else {
       try {
@@ -241,7 +241,7 @@ PuffsTools.formatBalance = function(number, format, unit) {
   if (typeof PuffsTools.ticker !== "undefined" && supportedCurrencies(unit)) {
     var ticker = PuffsTools.ticker.findOne(unit, { fields: { price: 1 } });
 
-    // convert first to ether
+    // convert first to puffs
     number = web3.utils.fromWei(
       number instanceof BigNumber || typeof number === "number"
         ? web3.utils.toBN(number)
