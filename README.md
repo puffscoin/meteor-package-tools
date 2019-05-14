@@ -1,6 +1,6 @@
-# Ethereum tools
+# PUFFScoin tools
 
-A set of helper functions for ethereum dapps.
+A set of helper functions for PUFFScoin dApps.
 
 See here for a [demo of the template helpers](http://localhost:4000/#tools).
 
@@ -8,15 +8,15 @@ See here for a [demo of the template helpers](http://localhost:4000/#tools).
 
 You can either add it as a Meteor package using:
 
-    $ Meteor add ethereum:tools
+    $ Meteor add puffscoin:tools
 
-or add link to the `ethtools.js` in your HTML.
+or add link to the `puffstools.js` in your HTML.
 
 ## Usage
 
 This package provides formating and converting functionality.
 
-When using the `EthTools.ticker` it will call the [cryptocompare.com public API](https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR) every 30s to retrive price information for ether.
+When using the `PuffsTools.ticker` it will call the [cryptocompare.com public API](https://min-api.cryptocompare.com/data/price?fsym=PUFFS&tsyms=BTC,USD,EUR) every 30s to retrive price information for PUFFScoin.
 When used as a Meteor package, the following units are possible for some methods:
 
     - `btc`
@@ -25,23 +25,23 @@ When used as a Meteor package, the following units are possible for some methods
     - `cad`
     - `gbp`
     - `jpy`
-    - And all ether units ('ether', 'finney', 'wei', etc)
+    - And all ether units ('puffs', 'finney', 'wei', etc)
 
-**Note** As non-meteor package you can only use the ether units.
+**Note** As non-meteor package you can only use the puffs units.
 
 ---
 
-### EthTools.ticker
+### PuffsTools.ticker
 
-    EthTools.ticker.start();
-    EthTools.ticker.findOne(unit)
+    PuffsTools.ticker.start();
+    PuffsTools.ticker.findOne(unit)
 
 **Note** This is only available when used as a Meteor package.
 
-To start polling for ticker prices run `EthTools.ticker.start()`
+To start polling for ticker prices run `PuffsTools.ticker.start()`
 
-It gives you the latest price for ether based on the [kraken.com public API](https://api.kraken.com/0/public/Ticker?pair=XETHZEUR,XXBTZUSD).
-`EthTools.ticker` is a reactive collection, so when used in a reactive function it will re-run this function when the price is updated.
+It gives you the latest price for ether based on the [kraken.com public API](https://api.kraken.com/0/public/Ticker?pair=XPUFFSZEUR,XXBTZUSD).
+`PuffsTools.ticker` is a reactive collection, so when used in a reactive function it will re-run this function when the price is updated.
 
 The ticker will be updated every 30 seconds.
 
@@ -67,19 +67,19 @@ Its a normal Meteor collection
 **Example**
 
 ```js
-var usd = EthTools.ticker.findOne("usd");
+var usd = PuffsTools.ticker.findOne("usd");
 
 if (usd) console.log(usd.price); // "2.0000"
 ```
 
 ---
 
-### EthTools.setLocale
+### PuffsTools.setLocale
 
-    EthTools.setLocale(locale)
+    PuffsTools.setLocale(locale)
 
 Set the locale to display numbers differently in other countries.
-This functions lets `EthTools.formatBalance()` and `EthTools.formatNumber()` reactivly re-run, to show the new format.
+This functions lets `PuffsTools.formatBalance()` and `PuffsTools.formatNumber()` reactivly re-run, to show the new format.
 
 **Parameters**
 
@@ -92,23 +92,23 @@ This functions lets `EthTools.formatBalance()` and `EthTools.formatNumber()` rea
 **Example**
 
 ```js
-EthTools.setLocale("de");
-EthTools.formatNumber(2000, "0,0.00");
+PuffsTools.setLocale("de");
+PuffsTools.formatNumber(2000, "0,0.00");
 // 2 000,00
 ```
 
 ---
 
-### EthTools.setUnit
+### PuffsTools.setUnit
 
-    EthTools.setUnit(unit)
+    PuffsTools.setUnit(unit)
 
 **Note** This is only available when used as a Meteor package.
 
-Reactivly sets a unit used as default unit, when no unit is passed to other EthTools methods.
+Reactivly sets a unit used as default unit, when no unit is passed to other PuffsTools methods.
 And also persists it in localstorage so its the same when you reload you app.
 
-Default is unit `ether`.
+Default is unit `puffs`.
 
 **Parameters**
 
@@ -121,26 +121,26 @@ Default is unit `ether`.
 **Example**
 
 ```js
-EthTools.setUnit("btc");
+PuffsTools.setUnit("btc");
 
 Tracker.autorun(function() {
-  var amount = EthTools.formatBalance("23000000000000000000", "0,0.0[00] unit");
+  var amount = PuffsTools.formatBalance("23000000000000000000", "0,0.0[00] unit");
   // amount = "0.287 btc"
 });
 ```
 
 ---
 
-### EthTools.getUnit
+### PuffsTools.getUnit
 
-    EthTools.getUnit()
+    PuffsTools.getUnit()
 
 **Note** This is only available when used as a Meteor package.
 
-Reactivly gets the current set default unit, used byt other EthTools methods when no unit was passed.
+Reactivly gets the current set default unit, used byt other PuffsTools methods when no unit was passed.
 And also persists it in localstorage so its the same when you reload you app.
 
-Default is unit `ether`.
+Default is unit `puffs`.
 
 **Parameters**
 
@@ -156,16 +156,16 @@ none
 EthTools.setUnit("btc");
 
 Tracker.autorun(function() {
-  var unit = EthTools.getUnit();
+  var unit = PuffsTools.getUnit();
   // unit === 'btc'
 });
 ```
 
 ---
 
-### EthTools.formatNumber
+### PuffsTools.formatNumber
 
-    EthTools.formatNumber(number, format)
+    PuffsTools.formatNumber(number, format)
 
 Formats any number using [numeral.js](http://numeraljs.com), e.g. `"0,0.00[0000]"`.
 
@@ -181,7 +181,7 @@ Formats any number using [numeral.js](http://numeraljs.com), e.g. `"0,0.00[0000]
 **Example**
 
 ```js
-var finney = EthTools.formatNumber(2000, "0,0.00");
+var finney = PuffsTools.formatNumber(2000, "0,0.00");
 // finney = '2,000.00'
 ```
 
@@ -197,25 +197,25 @@ var finney = EthTools.formatNumber(2000, "0,0.00");
 
 ---
 
-### EthTools.formatBalance
+### PuffsTools.formatBalance
 
-    EthTools.formatBalance(wei, format, unit)
+    PuffsTools.formatBalance(wei, format, unit)
 
-Formats a number of wei into any other ethereum unit and other currencies (see [Usage](#usage)).
+Formats a number of wei into any other PUFFScoin unit and other currencies (see [Usage](#usage)).
 
-Default is unit `ether`.
+Default is unit `puffs`.
 
 The `format` property follows the [numeral.js](http://numeraljs.com) formatting, e.g. `"0,0.00[0000]"`.
 Additionally you can add `"unit"` or `"UNIT"` (for uppercase) to display the unit after or before the number the number.
 
-Additionally this function uses the reactive `EthTools.getUnit()` variable, when no `unit` was given.
-You can then reactivly change the unit using `EthTools.setUnit('finney')`
+Additionally this function uses the reactive `PuffsTools.getUnit()` variable, when no `unit` was given.
+You can then reactivly change the unit using `PuffsTools.setUnit('finney')`
 
 **Parameters**
 
 * `wei` (`String|Number`) - the amount of wei to convert and format
 * `format` (`String`) - the format see [numeral.js](http://numeraljs.com) for examples, e.g. `"0,0.00[0000]"`.
-* `unit` (`String`) - (optional) the unit to convert the given wei amount to, if not given it will use `EthTools.getUnit()`
+* `unit` (`String`) - (optional) the unit to convert the given wei amount to, if not given it will use `PuffsTools.getUnit()`
 
 **Returns**
 
@@ -224,7 +224,7 @@ You can then reactivly change the unit using `EthTools.setUnit('finney')`
 **Example**
 
 ```js
-var amount = EthTools.formatBalance(
+var amount = PuffsTools.formatBalance(
   112345676543212345,
   "0,0.0[00] unit",
   "finney"
@@ -241,29 +241,29 @@ var amount = EthTools.formatBalance(
 **Usage**
 
 ```html
-{{dapp_formatBalance "1000000133" "0,0.00[0000]" "ether"}}
+{{dapp_formatBalance "1000000133" "0,0.00[0000]" "puffs"}}
 ```
 
-If you leave the last value it will use `EthTools.getUnit()`, as reactive localstorage variable.
+If you leave the last value it will use `PuffsTools.getUnit()`, as reactive localstorage variable.
 
 ```html
 {{dapp_formatBalance "1000000133" "0,0.00"}}
 ```
 
-Use then `EthTools.setUnit(finney')` to change the unit and displayed balances.
+Use then `PuffsTools.setUnit(finney')` to change the unit and displayed balances.
 
 ---
 
-### EthTools.toWei
+### PuffsTools.toWei
 
-    EthTools.toWei(number, unit)
+    PuffsTools.toWei(number, unit)
 
 Formats an amount of any supported unit (see [Usage](#usage)) into wei.
 
-Default is unit `ether`.
+Default is unit `puffs`.
 
-Additionally this function uses the reactive `EthTools.getUnit()` variable, when no `unit` was given.
-You can then reactivly change the unit using `EthTools.setUnit('finney')`
+Additionally this function uses the reactive `PuffsTools.getUnit()` variable, when no `unit` was given.
+You can then reactivly change the unit using `PuffsTools.setUnit('finney')`
 
 **Parameters**
 
@@ -277,6 +277,6 @@ You can then reactivly change the unit using `EthTools.setUnit('finney')`
 **Example**
 
 ```js
-var wei = EthTools.toWei(23, "btc");
+var wei = PuffsTools.toWei(23, "btc");
 // wei = "80000000000000000000"
 ```
