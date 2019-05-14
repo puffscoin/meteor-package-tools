@@ -37,7 +37,7 @@ Tinytest.add("PuffsTools.formatNumber", function(test) {
 
 Tinytest.add("PuffsTools.formatBalance", function(test) {
   // default to puffs
-  if (Meteor.isClient) EthTools.setUnit("puffs");
+  if (Meteor.isClient) PuffsTools.setUnit("puffs");
   test.equal(
     PuffsTools.formatBalance("1000000000000000000", "0,0.0[00] unit"),
     "1.0 puffs"
