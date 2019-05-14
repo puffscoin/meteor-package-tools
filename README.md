@@ -25,7 +25,7 @@ When used as a Meteor package, the following units are possible for some methods
     - `cad`
     - `gbp`
     - `jpy`
-    - And all ether units ('puffs', 'finney', 'wei', etc)
+    - And all PUFFScoin units ('puffs', 'finney', 'wei', etc)
 
 **Note** As non-meteor package you can only use the puffs units.
 
@@ -40,7 +40,7 @@ When used as a Meteor package, the following units are possible for some methods
 
 To start polling for ticker prices run `PuffsTools.ticker.start()`
 
-It gives you the latest price for ether based on the [kraken.com public API](https://api.kraken.com/0/public/Ticker?pair=XPUFFSZEUR,XXBTZUSD).
+It gives you the latest price for PUFFScoin based on the [kraken.com public API](https://api.kraken.com/0/public/Ticker?pair=XPUFFSZEUR,XXBTZUSD).
 `PuffsTools.ticker` is a reactive collection, so when used in a reactive function it will re-run this function when the price is updated.
 
 The ticker will be updated every 30 seconds.
@@ -153,7 +153,7 @@ none
 **Example**
 
 ```js
-EthTools.setUnit("btc");
+PuffsTools.setUnit("btc");
 
 Tracker.autorun(function() {
   var unit = PuffsTools.getUnit();
@@ -236,7 +236,7 @@ var amount = PuffsTools.formatBalance(
 
 #### Format balances template helper
 
-![format balances](https://raw.githubusercontent.com/ethereum/meteor-package-elements/master/screenshots/formatBalance.png)
+![format balances](https://raw.githubusercontent.com/puffscoin/meteor-package-elements/master/screenshots/formatBalance.png)
 
 **Usage**
 
