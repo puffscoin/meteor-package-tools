@@ -246,7 +246,7 @@ PuffsTools.formatBalance = function(number, format, unit) {
       number instanceof BigNumber || typeof number === "number"
         ? web3.utils.toBN(number)
         : number,
-      "ether"
+      "puffs"
     );
 
     // then times the currency
@@ -280,7 +280,7 @@ PuffsTools.formatBalance = function(number, format, unit) {
 };
 
 /**
-Formats any of the supported currency to ethereum wei.
+Formats any of the supported currency to puffscoin wei.
 
     PuffsTools.toWei(myNumber, unit)
 
